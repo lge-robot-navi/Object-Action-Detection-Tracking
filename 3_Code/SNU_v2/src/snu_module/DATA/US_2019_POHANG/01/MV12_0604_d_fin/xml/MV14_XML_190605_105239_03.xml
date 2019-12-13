@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Annotation>
+    <folder>MV14_0605_d</folder>
+    <subfolder>rgbdepth\color</subfolder>
+    <filename>MV14_RGB_190605_105239_03.png</filename>
+    <environment>
+        <camerastate>MV</camerastate>
+        <weather>Sunny</weather>
+        <venue>Po-hang</venue>
+        <purpose>Detection</purpose>
+    </environment>
+    <size>
+        <width>640</width>
+        <height>480</height>
+        <depth>3</depth>
+    </size>
+    <object>
+        <name>Human</name>
+        <pose>stand</pose>
+        <bndbox>
+            <xmin>69</xmin>
+            <ymin>93</ymin>
+            <xmax>187</xmax>
+            <ymax>425</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Human</name>
+        <pose>stand</pose>
+        <bndbox>
+            <xmin>343</xmin>
+            <ymin>81</ymin>
+            <xmax>463</xmax>
+            <ymax>418</ymax>
+        </bndbox>
+    </object>
+</Annotation>

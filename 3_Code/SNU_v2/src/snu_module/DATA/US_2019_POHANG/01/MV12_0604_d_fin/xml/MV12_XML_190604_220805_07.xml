@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Annotation>
+    <folder>MV12_0604_d</folder>
+    <subfolder>thermal</subfolder>
+    <filename>MV12_THERMAL_190604_220805_07.png</filename>
+    <environment>
+        <camerastate>MV</camerastate>
+        <weather>Sunny</weather>
+        <venue>Po-hang</venue>
+        <purpose>Detection</purpose>
+    </environment>
+    <size>
+        <width>640</width>
+        <height>512</height>
+        <depth>3</depth>
+    </size>
+    <object>
+        <name>Human</name>
+        <pose>lie</pose>
+        <bndbox>
+            <xmin>194</xmin>
+            <ymin>197</ymin>
+            <xmax>339</xmax>
+            <ymax>248</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Human</name>
+        <pose>lie</pose>
+        <bndbox>
+            <xmin>526</xmin>
+            <ymin>203</ymin>
+            <xmax>639</xmax>
+            <ymax>256</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>Human</name>
+        <pose>sit</pose>
+        <bndbox>
+            <xmin>0</xmin>
+            <ymin>171</ymin>
+            <xmax>74</xmax>
+            <ymax>269</ymax>
+        </bndbox>
+    </object>
+</Annotation>
