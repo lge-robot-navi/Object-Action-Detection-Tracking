@@ -1,0 +1,2 @@
+osr/osr_msgs:snu_module
+-DCATKIN_DEVEL_PREFIX=/home/kyle/USR_SNU_MODULE/SNU_Integrated_v2/devel -DCMAKE_INSTALL_PREFIX=/home/kyle/USR_SNU_MODULE/SNU_Integrated_v2/install -G Unix Makefiles

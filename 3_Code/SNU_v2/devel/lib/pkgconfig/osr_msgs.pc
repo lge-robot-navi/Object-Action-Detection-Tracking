@@ -1,0 +1,8 @@
+prefix=/home/kyle/USR_SNU_MODULE/SNU_Integrated_v2/devel
+
+Name: osr_msgs
+Description: Description of osr_msgs
+Version: 0.0.0
+Cflags: -I/home/kyle/USR_SNU_MODULE/SNU_Integrated_v2/devel/include
+Libs: -L/home/kyle/USR_SNU_MODULE/SNU_Integrated_v2/devel/lib 
+Requires: geometry_msgs nav_msgs message_runtime std_msgs

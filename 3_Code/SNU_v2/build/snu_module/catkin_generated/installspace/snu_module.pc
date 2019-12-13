@@ -1,0 +1,8 @@
+prefix=/home/kyle/USR_SNU_MODULE/SNU_Integrated_v2/install
+
+Name: snu_module
+Description: Description of snu_module
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/kyle/USR_SNU_MODULE/SNU_Integrated_v2/install/lib 
+Requires: cv_bridge geometry_msgs image_transport message_generation message_runtime roscpp rospy sensor_msgs std_msgs
