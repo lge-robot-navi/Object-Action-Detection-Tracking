@@ -1,6 +1,7 @@
 ## @package pyexample
 #  Documentation for this module.
 #
+#  Copyright GPL-3.0
 #  More details.
 """
 SNU Integrated Module v2.5

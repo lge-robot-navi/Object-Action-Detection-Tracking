@@ -2,6 +2,8 @@
 #  python file for action recognition (classification) using a action classifier model
 #  specified on thermal image sequence
 #
+#  Copyright: GPL-3.0
+#
 #  More details.
 import cv2
 import numpy as np
