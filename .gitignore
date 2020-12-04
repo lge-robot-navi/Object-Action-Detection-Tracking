@@ -1,3 +1,23 @@
 .idea/
 .idea/**
 /3_Code/SNU_v2/src/snu_module/scripts/obsoletes/
+
+# Ignore SNU-v3
+/3_Code/SNU_v3/src/snu_module/bag2imseq/
+/3_Code/SNU_v3/src/snu_module/bag2seq/
+/3_Code/SNU_v3/src/snu_module/DATA/
+/3_Code/SNU_v3/src/snu_module/evaluation/
+/3_Code/SNU_v3/src/snu_module/Fixcamera_poseestimation/
+/3_Code/SNU_v3/src/snu_module/imseq2video/
+/3_Code/SNU_v3/src/snu_module/model(deprecated)/
+# Ignore SNU-v3 Model Files that are too big
+/3_Code/SNU_v3/src/snu_module/models/**/*.pth
+/3_Code/SNU_v3/src/snu_module/models/**/*.pt
+/3_Code/SNU_v3/src/snu_module/models/**/*.weights
+#
+/3_Code/SNU_v3/src/snu_module/record_rosbag/
+/3_Code/SNU_v3/src/snu_module/sample_results/
+/3_Code/SNU_v3/src/snu_module/scripts(deprecated)/
+/3_Code/SNU_v3/src/snu_module/scripts4/config/
+/3_Code/SNU_v3/src/snu_module/scripts4/config(deprecated)
+/3_Code/SNU_v3/src/snu_module/scripts4/obsoletes/

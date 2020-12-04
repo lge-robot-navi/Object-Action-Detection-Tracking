@@ -1,0 +1,8 @@
+prefix=/home/sourcecodes/SNU_USR_dev/devel
+
+Name: snu_module
+Description: Description of snu_module
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: cv_bridge geometry_msgs image_transport message_generation message_runtime roscpp rospy sensor_msgs std_msgs

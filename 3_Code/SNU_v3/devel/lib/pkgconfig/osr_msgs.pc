@@ -1,0 +1,8 @@
+prefix=/home/sourcecodes/SNU_USR_dev/devel
+
+Name: osr_msgs
+Description: Description of osr_msgs
+Version: 0.0.0
+Cflags: -I/home/sourcecodes/SNU_USR_dev/devel/include
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs nav_msgs message_runtime std_msgs

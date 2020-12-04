@@ -1,0 +1,2 @@
+osr/osr_msgs:snu_module
+-DCATKIN_DEVEL_PREFIX=/home/sourcecodes/SNU_USR_dev/devel -DCMAKE_INSTALL_PREFIX=/home/sourcecodes/SNU_USR_dev/install -G Unix Makefiles
