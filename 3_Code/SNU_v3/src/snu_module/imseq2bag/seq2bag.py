@@ -4,12 +4,14 @@
 
 """
 import os
+import ros_numpy
 import numpy as np
 from pandas import read_csv
 import rosbag
 import rospy
 import roslib
 roslib.load_manifest('sensor_msgs')
+from sensor_msgs.msg import PointCloud2
 from cv_bridge import CvBridge
 import cv2
 
@@ -24,8 +26,12 @@ def load_multimodal_data(base_path):
 
     # Get Folder Lists
     modal_lists = os.listdir(base_path)
-    if "xml" in modal_lists:
-        modal_lists.remove("xml")
+    matchers = [
+        "xml", ".bag"
+    ]
+    matchings = [s for s in modal_lists if any(xs in s for xs in matchers)]
+    for matching in matchings:
+        modal_lists.remove(matching)
 
     # for each modalities
     modal_data_obj_dict = {}
@@ -67,7 +73,21 @@ def load_multimodal_data(base_path):
                 elif modal != "lidar":
                     data = cv2.imread(curr_filepath, -1)
                 else:
-                    data = read_csv(curr_filepath).values
+                    pc_csv_data = read_csv(curr_filepath)
+
+                    # Split
+                    pc_split_data = pc_csv_data.to_dict('split')
+                    pc_data_coord_list = pc_split_data["index"]
+                    pc_data_intensity_list = pc_split_data["data"]
+                    pc_data = []
+                    data = np.zeros(len(pc_data_coord_list), dtype=[
+                        ('x', np.float32), ('y', np.float32), ('z', np.float32), ('d', np.float32)
+                    ])
+                    for idx, pc_data_coord in enumerate(pc_data_coord_list):
+                        data[idx]['x'] = pc_data_coord[0]
+                        data[idx]['y'] = pc_data_coord[1]
+                        data[idx]['z'] = pc_data_coord[2]
+                        data[idx]['d'] = pc_data_intensity_list[idx][0]
 
                 # Append Data and Timestamp to Modal Object
                 modal_obj.set_data(data=data, timestamp=timestamp)
@@ -89,7 +109,10 @@ def generate_multimodal_bag_file(MMT_OBJ, base_path):
     bag_name = os.path.split(base_path)[-1] + ".bag"
 
     # Initialize Bag File
-    bag = rosbag.Bag(os.path.join(base_path, bag_name), "w")
+    if os.path.isfile(os.path.join(base_path, bag_name)) is False:
+        bag = rosbag.Bag(os.path.join(base_path, bag_name), "w")
+    else:
+        bag = None
 
     # Iterate for Multimodal Sensors
     try:
@@ -139,7 +162,10 @@ def generate_multimodal_bag_file(MMT_OBJ, base_path):
 
                     # Initialize ROS Message Type
                     if modal == "lidar":
-                        pass
+                        ROS_LIDAR_PC2 = ros_numpy.point_cloud2.array_to_pointcloud2(
+                            modal_data, modal_stamp, frame_id="velodyne_link"
+                        )
+                        bag.write(modal_frame_id, ROS_LIDAR_PC2, modal_stamp)
                     else:
                         # ROS_MODAL_IMG = Image()
                         ROS_MODAL_IMG = bridge.cv2_to_imgmsg(modal_data, modal_encoding)
@@ -152,16 +178,18 @@ def generate_multimodal_bag_file(MMT_OBJ, base_path):
                             width=modal_data.shape[1], height=modal_data.shape[0]
                         )
 
-                        bag.write(modal_frame_id + "/image", ROS_MODAL_IMG, modal_stamp)
-                        if modal != "nightvision":
-                            if modal == "aligned_depth":
-                                bag.write("osr/image_depth_camerainfo", MODAL_CAMERA_INFO, modal_stamp)
-                            else:
-                                bag.write(modal_frame_id + "/image_camerainfo", MODAL_CAMERA_INFO, modal_stamp)
+                        if bag is not None:
+                            bag.write(modal_frame_id + "/image", ROS_MODAL_IMG, modal_stamp)
+                            if modal != "nightvision":
+                                # Write CameraInfo
+                                if modal == "aligned_depth":
+                                    bag.write("osr/image_depth_camerainfo", MODAL_CAMERA_INFO, modal_stamp)
+                                else:
+                                    bag.write(modal_frame_id + "/image_camerainfo", MODAL_CAMERA_INFO, modal_stamp)
 
     finally:
-        bag.close()
-        pass
+        if bag is not None:
+            bag.close()
 
 
 if __name__ == "__main__":
